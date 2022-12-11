@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>bean-load-plugin-core</module>
+        <module>plugin-demo</module>
+        <module>load-plugin-spring-boot-starter</module>
+        <module>bean-load-plugin-annotation</module>
+        <module>bean-load-plugin</module>
+    </modules>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.6</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <name>DynamicPlugin</name>
+    <groupId>org.musebk</groupId>
+    <artifactId>spring-boot-starter-plugin</artifactId>
+    <version>main-core</version>
+    <description>spring-boot-dynamic-load-plugin</description>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <version.load.plugin>0.0.1-SNAPSHOT</version.load.plugin>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.musebk</groupId>
+                <artifactId>bean-load-plugin-annotation</artifactId>
+                <version>${version.load.plugin}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.musebk</groupId>
+                <artifactId>bean-load-plugin</artifactId>
+                <version>${version.load.plugin}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.musebk</groupId>
+                <artifactId>bean-load-plugin-core</artifactId>
+                <version>${version.load.plugin}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.musebk</groupId>
+                <artifactId>load-plugin-spring-boot-starter</artifactId>
+                <version>${version.load.plugin}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
